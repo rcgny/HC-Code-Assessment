@@ -7,75 +7,63 @@ using System.Web.Http;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using HC_CodeAssessment;
 using HC_CodeAssessment.Controllers;
+using HC_CodeAssessment.Models;
 
 namespace HC_CodeAssessment.Tests.Controllers
 {
     [TestClass]
     public class ValuesControllerTest
-    {
+    {  //rcgtemp
         [TestMethod]
-        public void Get()
+        public void GetPersons()
         {
             // Arrange
             ValuesController controller = new ValuesController();
 
             // Act
-            IEnumerable<string> result = controller.Get();
-
+            List<Person> result = controller.Get();
+            var firstName = result.FirstOrDefault<Person>().FirstName;
+            var lastName = result.FirstOrDefault<Person>().LastName;
+             
             // Assert
             Assert.IsNotNull(result);
-            Assert.AreEqual(2, result.Count());
-            Assert.AreEqual("value1", result.ElementAt(0));
-            Assert.AreEqual("value2", result.ElementAt(1));
+            Assert.AreEqual(5, result.Count());
+            Assert.AreEqual("Sid", firstName );
+            Assert.AreEqual("Green", lastName );
         }
 
         [TestMethod]
-        public void GetById()
+        public void GetPersonBySearch()
         {
             // Arrange
             ValuesController controller = new ValuesController();
 
             // Act
-            string result = controller.Get(5);
+
+            List<Person> result = controller.Get("Walker");
+            var firstName = result.FirstOrDefault<Person>().FirstName;
+            var lastName = result.FirstOrDefault<Person>().LastName;
 
             // Assert
-            Assert.AreEqual("value", result);
+            Assert.IsNotNull(result);           
+            Assert.AreEqual("Walker", firstName);
+            Assert.AreEqual("Aballo", lastName);
         }
 
-        [TestMethod]
-        public void Post()
-        {
-            // Arrange
-            ValuesController controller = new ValuesController();
+        // This will require more research as it would not be good to write into the database with a unit test.
+        //[TestMethod]
+        //public void AddPerson()
+        //{
+        //    // Arrange
+        //    ValuesController controller = new ValuesController();
 
-            // Act
-            controller.Post("value");
+        //    // Act
+        //    Person person = new Person { FirstName = "Mike", LastName = "Mahoney", Age = 45 };         
+        //    Interest interest = new Interest { Curiosity = "Astronomy" };
+        //    controller.Post(person);           
 
-            // Assert
-        }
-
-        [TestMethod]
-        public void Put()
-        {
-            // Arrange
-            ValuesController controller = new ValuesController();
-
-            // Act
-            controller.Put(5, "value");
-
-            // Assert
-        }
-
-        [TestMethod]
-        public void Delete()
-        {
-            // Arrange
-            ValuesController controller = new ValuesController();
-
-            // Act
-            controller.Delete(5);
-
-            // Assert
-        }
+        //    // Assert
+           
+        //}
     }
 }

@@ -1,39 +1,58 @@
-﻿using System;
+﻿using HC_CodeAssessment.DAL;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using HC_CodeAssessment.Models;
+using Newtonsoft.Json.Linq;
 
 namespace HC_CodeAssessment.Controllers
 {
     public class ValuesController : ApiController
     {
+        // DB functionality
+        // Note: It's a common practice to implement the repository pattern in order to create 
+        // an abstraction layer between your controller and the data access layer.  I omitted due to
+        // to the simple nature of this assignment
+        private PersonContext db = new PersonContext();
+
+
         // GET api/values
-        public IEnumerable<string> Get()
+        public List<Person> Get()
         {
-            return new string[] { "value1", "value2" };
+            // Using LINQ to Entity query to return all info. for each person, including interests
+            var persons = from p in db.Persons
+                          select p;
+
+            return persons.ToList();        
+        }               
+
+        // GET api/values/FirstName or LastName
+        public List<Person> Get(string searchString)
+        {
+            var persons = from p in db.Persons
+                          select p;
+
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                persons = persons.Where(p => p.FirstName.Contains(searchString)
+                                       || p.LastName.Contains(searchString));
+            }
+
+            return persons.ToList();
         }
 
-        // GET api/values/5
-        public string Get(int id)
+        // POST api/values/Person
+        public void Post([FromBody]Person person)
         {
-            return "value";
-        }
-
-        // POST api/values
-        public void Post([FromBody]string value)
-        {
-        }
-
-        // PUT api/values/5
-        public void Put(int id, [FromBody]string value)
-        {
-        }
-
-        // DELETE api/values/5
-        public void Delete(int id)
-        {
-        }
+            db.Persons.Add(person);
+            db.SaveChanges();
+        }      
     }
 }
+
+
+
+ 
