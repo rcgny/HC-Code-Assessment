@@ -1,11 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Net.Http;
-using System.Text;
-using System.Web.Http;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using HC_CodeAssessment;
 using HC_CodeAssessment.Controllers;
 using HC_CodeAssessment.Models;
 
@@ -13,7 +8,7 @@ namespace HC_CodeAssessment.Tests.Controllers
 {
     [TestClass]
     public class ValuesControllerTest
-    {  //rcgtemp
+    {  
         [TestMethod]
         public void GetPersons()
         {

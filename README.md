@@ -1,13 +1,14 @@
 ### HC CodeAssessment Runtime Instructions 
 
 :::::::::::::::::::::::::::::::::::
-HC CodeAssessment Requirements
+Environment Requirements:
 :::::::::::::::::::::::::::::::::::
-
-Environment:
+ 
 Windows 10
-IIS Express (Google Chrome)
+IIS Express 
 VS2019
+.Net 4.7.2
+Postman (optional test app)
 
 To Run:
 

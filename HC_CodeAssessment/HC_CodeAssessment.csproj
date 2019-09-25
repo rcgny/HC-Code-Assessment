@@ -174,10 +174,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="App_Data\HC_CodeAssessment1.mdf" />
-    <Content Include="App_Data\HC_CodeAssessment1_log.ldf">
-      <DependentUpon>HC_CodeAssessment1.mdf</DependentUpon>
-    </Content>
     <Content Include="Areas\HelpPage\HelpPage.css" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />

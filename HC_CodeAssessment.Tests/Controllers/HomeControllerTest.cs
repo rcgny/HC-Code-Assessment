@@ -1,6 +1,5 @@
 ﻿using System.Web.Mvc;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using HC_CodeAssessment;
 using HC_CodeAssessment.Controllers;
 
 namespace HC_CodeAssessment.Tests.Controllers
